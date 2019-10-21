@@ -13,25 +13,34 @@ const TodoList = () => {
 };
 
 const AppHeader = () => {
-    return (
-        <h1>TODO List</h1>
-    );
-};
-
-const SearchPanel = () => {
-    return (
-        <input placeholder="Search..." />
-    );
-};
-
-const App = () => {
     const isLoggedIn = true;
     const loginMsg = <span>Login in this App please.</span>; /* React element */
     const welcomeMsg = <span>Welcome Back to this App.</span>;
     return (
         <div>
-            { isLoggedIn ? welcomeMsg : loginMsg }<br />
+            { isLoggedIn ? welcomeMsg : loginMsg }
+            <br />
             <span>{ (new Date()).toString() }</span>
+            <h1>TODO List</h1>
+        </div>
+    );
+};
+
+const SearchPanel = () => {
+    const searchText = 'Type here to search.....';
+    const searchCss = {
+        fontSize: '16px'
+    };
+    return (
+        <input 
+        style={searchCss}
+        placeholder={searchText} />
+    );
+};
+
+const App = () => {
+    return (
+        <div>
             <AppHeader /> {/* name of React component */}
             <SearchPanel />   
             <TodoList />
