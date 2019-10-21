@@ -2,11 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 const TodoList = () => {
+    const items = ['List 1', 'List 2', 'List 3'];
     return (
         <ul>
-        <li>list 1</li>
-        <li>list 2</li>
-        <li>list 3</li>
+        <li>{ items[0] }</li>
+        <li>{ items[1] }</li>
+        <li>{ items[2] }</li>
     </ul>
     );
 };
@@ -23,15 +24,23 @@ const SearchPanel = () => {
     );
 };
 
-const el = (
-    <div>
-        <AppHeader /> 
-        <SearchPanel />   
-        <TodoList />
-    </div>
-);
+const App = () => {
+    const isLoggedIn = true;
+    const loginMsg = <span>Login in this App please.</span>; /* React element */
+    const welcomeMsg = <span>Welcome Back to this App.</span>;
+    return (
+        <div>
+            { isLoggedIn ? welcomeMsg : loginMsg }<br />
+            <span>{ (new Date()).toString() }</span>
+            <AppHeader /> {/* name of React component */}
+            <SearchPanel />   
+            <TodoList />
+        </div> 
+    );
+};
 
-ReactDOM.render(el,
+
+ReactDOM.render(<App />,
     document.getElementById('root'));
 
 
