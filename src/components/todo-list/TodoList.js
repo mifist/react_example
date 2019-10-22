@@ -17,7 +17,7 @@ const TodoList = ( { todos } ) => {
                 {/* <TodoListItem label={ item.label } important={ item.important } /> */}
                 {/* or */}
                 <TodoListItem { ... itemProps } />
-                <div className="todo-list-actions">
+                <div className="todo-list__actions">
                     <button type="button" className="btn btn-outline-danger"><i className="fa fa-trash"></i></button>
                     <button type="button" className="btn btn-outline-success"><i className="fa fa-check"></i></button>
                 </div>
@@ -26,7 +26,7 @@ const TodoList = ( { todos } ) => {
     });
 
     return (
-        <ul className="list-group TodoList"> { elements } </ul>
+        <ul className="list-group TodoList todo-list"> { elements } </ul>
     );
 };
 

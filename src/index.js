@@ -2,11 +2,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 /* Component */
-import AppHeader from './components/header/AppHeader';
-import AppFooter from './components/footer/AppFooter';
+import AppHeader from './components/AppHeader';
+import AppFooter from './components/AppFooter';
+
 import SearchPanel from './components/search-panel/SearchPanel';
-import TodoList from './components/todo-list/TodoList';
 import FilterPanel from './components/filtering/FilterPanel';
+
+import TodoList from './components/todo-list/TodoList';
+
 /* Style */
 import './App.scss';
 
@@ -27,7 +30,6 @@ const App = () => {
                 <SearchPanel />   
                 <FilterPanel />
             </div>
-           
             <TodoList todos={todoData} />
             <AppFooter copyright={copyright} />
         </div> 

@@ -8,7 +8,7 @@ const TodoListItem = ( { label, important = false } ) => {
         color: important ? 'tomato': 'black'
     };
 
-    return <span className="TodoListItem" style={elStyle}>{ label }</span>;
+    return <span className="TodoListItem todo-list__label" style={elStyle}>{ label }</span>;
 };
 
 export default TodoListItem;

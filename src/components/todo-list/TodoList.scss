@@ -3,13 +3,14 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        cursor: pointer;
         &.active {
             background-color: rgba(40, 167, 69, 0.05);
             border-color: #28a745;
         }
     }
 }
-.todo-list-actions {
+.todo-list__actions {
     button {
         &:not(:last-child) {
             margin-right: 15px;
