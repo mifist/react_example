@@ -1,0 +1,18 @@
+.TodoList {
+    li {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &.active {
+            background-color: rgba(40, 167, 69, 0.05);
+            border-color: #28a745;
+        }
+    }
+}
+.todo-list-actions {
+    button {
+        &:not(:last-child) {
+            margin-right: 15px;
+        }
+    }
+}

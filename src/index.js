@@ -1,49 +1,35 @@
+/* Core */
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-const TodoList = () => {
-    const items = ['List 1', 'List 2', 'List 3'];
-    return (
-        <ul>
-        <li>{ items[0] }</li>
-        <li>{ items[1] }</li>
-        <li>{ items[2] }</li>
-    </ul>
-    );
-};
-
-const AppHeader = () => {
-    const isLoggedIn = true;
-    const loginMsg = <span>Login in this App please.</span>; /* React element */
-    const welcomeMsg = <span>Welcome Back to this App.</span>;
-    return (
-        <div>
-            { isLoggedIn ? welcomeMsg : loginMsg }
-            <br />
-            <span>{ (new Date()).toString() }</span>
-            <h1>TODO List</h1>
-        </div>
-    );
-};
-
-const SearchPanel = () => {
-    const searchText = 'Type here to search.....';
-    const searchCss = {
-        fontSize: '16px'
-    };
-    return (
-        <input 
-        style={searchCss}
-        placeholder={searchText} />
-    );
-};
+/* Component */
+import AppHeader from './components/header/AppHeader';
+import AppFooter from './components/footer/AppFooter';
+import SearchPanel from './components/search-panel/SearchPanel';
+import TodoList from './components/todo-list/TodoList';
+import FilterPanel from './components/filtering/FilterPanel';
+/* Style */
+import './App.scss';
 
 const App = () => {
+    const copyright = 'This is footer copyright';
+    const todoData = [
+        { label: 'Drink coffe', important: false, id: 1 },
+        { label: 'Drink water', important: false, id: 2 },
+        { label: 'Learn React', important: true, id: 3 },
+        { label: 'Learn ES6', important: true, id: 4 },
+        { label: 'Have a lanch', important: false, id: 5 },
+    ];
+
     return (
-        <div>
+        <div className="MainApp">
             <AppHeader /> {/* name of React component */}
-            <SearchPanel />   
-            <TodoList />
+            <div className="app-actions-panel">
+                <SearchPanel />   
+                <FilterPanel />
+            </div>
+           
+            <TodoList todos={todoData} />
+            <AppFooter copyright={copyright} />
         </div> 
     );
 };

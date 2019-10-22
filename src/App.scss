@@ -1,0 +1,14 @@
+.MainApp {
+    max-width: 650px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 15px;
+    padding-top: 15px;
+}
+.app-actions-panel {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between; 
+    margin-bottom: 15px;
+}
