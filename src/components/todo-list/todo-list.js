@@ -17,7 +17,7 @@ const TodoList = ( { todos, onDeleted } ) => {
                 {/* <TodoListItem label={ item.label } important={ item.important } /> */}
                 {/* or */}
                 <TodoListItem 
-                    { ... itemProps } 
+                    { ...itemProps } 
                     onDeleted={ () => onDeleted(id) }
                 />
             </li>

@@ -4,21 +4,25 @@ import React, { Component } from 'react';
 import AppHeader from '../app-header';
 import AppFooter from '../app-footer';
 
+import TodoList from '../todo-list';
 import SearchPanel from '../search-panel';
 import StatusFilter from '../status-filter';
+import TodoAddForm from '../todo-add-form';
 
-import TodoList from '../todo-list';
+
 
 /* Style */
 import './app.scss';
 
 export default class App extends Component {
+
+    maxListId = 100;
     state = { 
         todoData: [
             { label: 'Drink coffe', important: false, id: 1 },
             { label: 'Drink water', important: false, id: 2 },
-            { label: 'Learn React', important: true, id: 3 },
-            { label: 'Learn ES6', important: true, id: 4 },
+            { label: 'Learn React', important: false, id: 3 },
+            { label: 'Learn ES6', important: false, id: 4 },
             { label: 'Have a lanch', important: false, id: 5 },
         ]
     }
@@ -26,17 +30,26 @@ export default class App extends Component {
     /* Нельзя изменять предыдущее значение state, 
     поскольку он очень часто изменяется асинхронно и могут возникнуть ошибки */
     deletListItem = (id) => {
-        console.log('del', id)
+        console.log('del', id);
         this.setState(({ todoData }) => {
             const idx = todoData.findIndex( (el) => el.id === id )
         /*  const before = todoData.slice(0, idx)
-            const after = todoData.slice(idx+1) */
-            const newTodoData = [
-               /*  ... before, ... after */
-               /* or */
-                ... todoData.slice(0, idx),
-                ... todoData.slice(idx+1)
-            ];
+            const after = todoData.slice(idx+1)
+            const newTodoData = [...before, ...after ]; */
+            const newTodoData = [ ...todoData.slice(0, idx), ...todoData.slice(idx+1) ];
+            return {
+                todoData: newTodoData
+            }
+        });
+    }
+
+    addListItem = (text) => {
+        console.log('add', text);
+        // generate id ?
+        const newListItem = { label: text, important: false, id: this.maxListId++ }
+        // add element in array ?
+        this.setState(({ todoData }) => {
+            const newTodoData = [ ...todoData, newListItem ];
             return {
                 todoData: newTodoData
             }
@@ -56,6 +69,9 @@ export default class App extends Component {
                 <TodoList 
                     todos={ todoData } 
                     onDeleted={ this.deletListItem }
+                />
+                <TodoAddForm 
+                    onAdd={ this.addListItem } 
                 />
                 <AppFooter copyright={copyright} />
             </div> 
