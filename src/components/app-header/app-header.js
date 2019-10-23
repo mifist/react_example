@@ -1,18 +1,18 @@
 /* Core */
 import React from 'react';
 /* Style */
-import './AppHeader.scss';
+import './app-header.scss';
 
 const AppHeader = () => {
     const isLoggedIn = true;
     const loginMsg = <span>Login in this App please.</span>; /* React element */
     const welcomeMsg = <span>Welcome Back to this App.</span>;
     return (
-        <header className="AppHeader">
+        <header className="app-header">
             { isLoggedIn ? welcomeMsg : loginMsg }
             <br />
             <span>Current Time: { (new Date()).toString() }</span>
-            <div className="app-header">
+            <div className="list-header">
                 <h1>TODO List App</h1>
                 <h2>1 more to do, 3 done</h2>
             </div>

@@ -1,9 +1,9 @@
 /* Core */
 import React from 'react';
 /* Component */
-import TodoListItem from './TodoListItem';
+import TodoListItem from '../todo-list-item';
 /* Style */
-import './TodoList.scss';
+import './todo-list.scss';
 
 const TodoList = ( { todos } ) => {
 
@@ -26,7 +26,7 @@ const TodoList = ( { todos } ) => {
     });
 
     return (
-        <ul className="list-group TodoList todo-list"> { elements } </ul>
+        <ul className="list-group todo-list"> { elements } </ul>
     );
 };
 

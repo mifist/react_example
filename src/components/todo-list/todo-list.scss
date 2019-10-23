@@ -1,4 +1,4 @@
-.TodoList {
+.todo-list {
     li {
         display: flex;
         align-items: center;
@@ -9,11 +9,11 @@
             border-color: #28a745;
         }
     }
-}
-.todo-list__actions {
-    button {
-        &:not(:last-child) {
-            margin-right: 15px;
+    &__actions {
+        button {
+            &:not(:last-child) {
+                margin-right: 15px;
+            }
         }
     }
 }

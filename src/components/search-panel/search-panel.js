@@ -1,12 +1,12 @@
 /* Core */
 import React from 'react';
 /* Style */
-import './SearchPanel.scss';
+import './search-panel.scss';
 
 const SearchPanel = () => {
     const searchText = 'Type here to start search.....';
     return (
-        <div className="SearchPanel">
+        <div className="search-panel">
             <div className="input-group">
                 <input className="form-control" placeholder={searchText} /> 
             </div>
