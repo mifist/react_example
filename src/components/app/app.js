@@ -1,14 +1,13 @@
 /* Core */
 import React from 'react';
-import ReactDOM from 'react-dom';
 /* Component */
-import AppHeader from './components/app-header';
-import AppFooter from './components/app-footer';
+import AppHeader from '../app-header';
+import AppFooter from '../app-footer';
 
-import SearchPanel from './components/search-panel';
-import StatusFilter from './components/status-filter';
+import SearchPanel from '../search-panel';
+import StatusFilter from '../status-filter';
 
-import TodoList from './components/todo-list';
+import TodoList from '../todo-list';
 
 /* Style */
 import './app.scss';
@@ -25,7 +24,7 @@ const App = () => {
 
     return (
         <div className="main-app">
-            <AppHeader /> {/* name of React component */}
+            <AppHeader toDo="1" done="3" /> {/* name of React component */}
             <div className="app-actions-panel">
                 <SearchPanel />   
                 <StatusFilter />

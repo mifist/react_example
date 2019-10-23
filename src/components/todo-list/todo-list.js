@@ -17,10 +17,6 @@ const TodoList = ( { todos } ) => {
                 {/* <TodoListItem label={ item.label } important={ item.important } /> */}
                 {/* or */}
                 <TodoListItem { ... itemProps } />
-                <div className="todo-list__actions">
-                    <button type="button" className="btn btn-outline-danger"><i className="fa fa-trash"></i></button>
-                    <button type="button" className="btn btn-outline-success"><i className="fa fa-check"></i></button>
-                </div>
             </li>
         );
     });

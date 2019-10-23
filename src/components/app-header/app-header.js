@@ -3,7 +3,7 @@ import React from 'react';
 /* Style */
 import './app-header.scss';
 
-const AppHeader = () => {
+const AppHeader = ( {toDo, done} ) => {
     const isLoggedIn = true;
     const loginMsg = <span>Login in this App please.</span>; /* React element */
     const welcomeMsg = <span>Welcome Back to this App.</span>;
@@ -14,7 +14,7 @@ const AppHeader = () => {
             <span>Current Time: { (new Date()).toString() }</span>
             <div className="list-header">
                 <h1>TODO List App</h1>
-                <h2>1 more to do, 3 done</h2>
+                <h2>{toDo} more to do, {done} done</h2>
             </div>
             
         </header>
