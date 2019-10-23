@@ -29,7 +29,10 @@ const App = () => {
                 <SearchPanel />   
                 <StatusFilter />
             </div>
-            <TodoList todos={todoData} />
+            <TodoList 
+                todos={todoData} 
+                onDeleted={ (id) => console.log('del', id) }
+            />
             <AppFooter copyright={copyright} />
         </div> 
     );

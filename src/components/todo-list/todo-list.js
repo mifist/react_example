@@ -5,7 +5,7 @@ import TodoListItem from '../todo-list-item';
 /* Style */
 import './todo-list.scss';
 
-const TodoList = ( { todos } ) => {
+const TodoList = ( { todos, onDeleted } ) => {
 
     const elements = todos.map( (item, index) => {
         const isActive = false;
@@ -13,10 +13,13 @@ const TodoList = ( { todos } ) => {
         const itemClass = isActive ? 'list-group-item active' : 'list-group-item';
         return (
         
-            <li className={itemClass} key={ index }>
+            <li key={ id } className={ itemClass } >
                 {/* <TodoListItem label={ item.label } important={ item.important } /> */}
                 {/* or */}
-                <TodoListItem { ... itemProps } />
+                <TodoListItem 
+                    { ... itemProps } 
+                    onDeleted={ () => onDeleted(id) }
+                />
             </li>
         );
     });

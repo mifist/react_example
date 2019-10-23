@@ -34,38 +34,44 @@ export default class TodoListItem extends Component {
     };
     
     render() {
-        const { label } = this.props;
+        const { label, onDeleted } = this.props;
         const { done, important } = this.state;
 
         let elClasses = 'todo-list-item';
-        let btnClassDanger = 'btn btn-outline-danger';
-        let btnClassSuccess = 'btn btn-outline-success';
+        let btnClassImportant = 'btn btn-outline-info';
+        let btnClassDelet = 'btn btn-outline-danger';
+        let btnClassDone = 'btn btn-outline-success';
 
         if (done) { 
             elClasses += ' done'
-            btnClassSuccess += ' active'
+            btnClassDone += ' active'
         }
         if (important) { 
             elClasses += ' important'
-            btnClassDanger += ' active' 
+            btnClassImportant += ' active' 
         }
         
 
         return (
-            <div  className={elClasses}>
+            <div className={elClasses}>
                 <span 
                     className="todo-list-item__label"
                     onClick={ this.onLabelClick } >
                     { label }
                 </span>
                 <div className="todo-list-item__actions">
-                    <button type="button" 
-                        className={btnClassDanger}
-                        onClick={ this.onMarkImportant }>
-                        <i className="fa fa-paw"></i>
+                    <button type="button"
+                        className={btnClassDelet}
+                        onClick={ onDeleted }>
+                        <i className="fa fa-trash"></i>
                     </button>
                     <button type="button" 
-                        className={btnClassSuccess}
+                        className={btnClassImportant}
+                        onClick={ this.onMarkImportant }>
+                        <i className="fa fa-exclamation"></i>
+                    </button>
+                    <button type="button" 
+                        className={btnClassDone}
                         onClick={ this.onLabelClick }>
                         <i className="fa fa-check"></i>
                     </button>
