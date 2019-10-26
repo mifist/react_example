@@ -71,15 +71,35 @@ export default class App extends Component {
     }
 
     addListItem = (text) => {
-        console.log('add', text);
-        // generate id ?
-        const newListItem = this.createTodoItem( text )
-        // add element in array ?
+        if ( text !== '' ) {
+            console.log('add', text);
+            // generate id ?
+            const newListItem = this.createTodoItem( text )
+            // add element in array ?
+            this.setState(({ todoData }) => {
+                const newTodoData = [ ...todoData, newListItem ]
+                return {
+                    todoData: newTodoData
+                }
+            });
+        } else {
+            alert('Enter new task, what needs to be done!');
+        }
+        
+    }
+
+    onFilterind = (text) => {
+        console.log('find', text);
         this.setState(({ todoData }) => {
-            const newTodoData = [ ...todoData, newListItem ]
+            let newTodoData = todoData.filter( (el) => el.label.includes(text))
+            console.log(newTodoData.length)
+            if (text.length === 0) {
+                newTodoData = todoData
+            }
             return {
                 todoData: newTodoData
             }
+        
         });
     }
 
@@ -88,7 +108,7 @@ export default class App extends Component {
             todoData: this.toggleProperty( todoData, id, 'important' )
         }
     })
-    
+
     onToggleDone = (id) => this.setState(({ todoData }) => {
         return {
             todoData: this.toggleProperty( todoData, id, 'done' )
@@ -130,18 +150,14 @@ export default class App extends Component {
             <div className="main-app">
                 <AppHeader toDo={ todoCount } done={ doneCount } />
                 <div className="app-actions-panel">
-                    <SearchPanel />   
+                    <SearchPanel onFilterind={ this.onFilterind } />   
                     <StatusFilter />
                 </div>
-                <TodoList 
-                    todos={ todoData } 
+                <TodoList todos={ todoData } 
                     onDeleted={ this.deletListItem }
                     onToggleImportant={ this.onToggleImportant }
-                    onToggleDone={ this.onToggleDone }
-                />
-                <TodoAddForm 
-                    onAdd={ this.addListItem } 
-                />
+                    onToggleDone={ this.onToggleDone } />
+                <TodoAddForm addListItem={ this.addListItem } />
                 <AppFooter copyright={copyright} />
             </div> 
         );
