@@ -24,11 +24,10 @@ export default class App extends Component {
             this.createTodoItem('Learn React'),
             this.createTodoItem('Learn ES6'),
             this.createTodoItem('Have a lanch'),
-        ]
+        ],
+        term: ''
     }
 
-    /* Нельзя изменять предыдущее значение state, 
-    поскольку он очень часто изменяется асинхронно и могут возникнуть ошибки */
     /* Helper Functions */
     createTodoItem(label) {
         return {
@@ -88,19 +87,8 @@ export default class App extends Component {
         
     }
 
-    onFilterind = (text) => {
-        console.log('find', text);
-        this.setState(({ todoData }) => {
-            let newTodoData = todoData.filter( (el) => el.label.includes(text))
-            console.log(newTodoData.length)
-            if (text.length === 0) {
-                newTodoData = todoData
-            }
-            return {
-                todoData: newTodoData
-            }
-        
-        });
+    onSearchChange = (term) => {
+        this.setState({ term });
     }
 
     onToggleImportant = (id) => this.setState(({ todoData }) => {
@@ -115,32 +103,18 @@ export default class App extends Component {
         }
     })
 
-    /* Alternative code */
-    /* 
-    deleteItem = (id) => {
-        this.setState(({todoData}) => ({
-            todoData: todoData.filter((item) => item.id !== id)
-        }));
-    };
-    
-    toggle = (propName, id) => {
-        this.setState(({todoData}) => ({
-            todoData: todoData.map((item) => {
-            if (item.id === id) {
-                return {...item, [propName]: !item[propName]};
-            }
-            return item;
-            }),
-        }));
-    };
-
-    toggleImportant = (id) => this.toggle(`important`, id);
-    toggleDone = (id) => this.toggle(`done`, id); 
-    */
+    search(items, term) {
+        if (term.length === 0) {
+            return items
+        } 
+        return items.filter( (el) => {
+            return el.label.toLowerCase().includes(term.toLowerCase())
+        } )
+    }
 
     render() {
-        const copyright = 'This is footer copyright';
-        const { todoData } = this.state; // arr
+        const { todoData, term } = this.state; // arr
+        const visibleData = this.search(todoData, term)
         const doneCount = todoData
         .filter((el) => el.done )
         .length;
@@ -150,15 +124,15 @@ export default class App extends Component {
             <div className="main-app">
                 <AppHeader toDo={ todoCount } done={ doneCount } />
                 <div className="app-actions-panel">
-                    <SearchPanel onFilterind={ this.onFilterind } />   
+                    <SearchPanel onSearchChange={ this.onSearchChange } />   
                     <StatusFilter />
                 </div>
-                <TodoList todos={ todoData } 
+                <TodoList todos={ visibleData } 
                     onDeleted={ this.deletListItem }
                     onToggleImportant={ this.onToggleImportant }
                     onToggleDone={ this.onToggleDone } />
                 <TodoAddForm addListItem={ this.addListItem } />
-                <AppFooter copyright={copyright} />
+                <AppFooter copyright="This is footer copyright" />
             </div> 
         );
     }
