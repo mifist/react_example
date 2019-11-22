@@ -25,7 +25,8 @@ export default class App extends Component {
             this.createTodoItem('Learn ES6'),
             this.createTodoItem('Have a lanch'),
         ],
-        term: ''
+        term: '',
+        filter: 'active'// active, done, all
     }
 
     /* Helper Functions */
@@ -90,6 +91,9 @@ export default class App extends Component {
     onSearchChange = (term) => {
         this.setState({ term });
     }
+    onFilterChange = (filter) => {
+        this.setState({ filter });
+    }
 
     onToggleImportant = (id) => this.setState(({ todoData }) => {
         return {
@@ -112,9 +116,22 @@ export default class App extends Component {
         } )
     }
 
+    filter(items, filter) {
+        switch(filter) {
+            case 'all':
+                return items
+            case 'active':
+                return items.filter((item) => !item.done)
+            case 'done':
+                return items.filter((item) => item.done)
+            default:
+                return items
+        }
+    }
+
     render() {
-        const { todoData, term } = this.state; // arr
-        const visibleData = this.search(todoData, term)
+        const { todoData, term, filter } = this.state; // arr
+        const visibleData = this.filter( this.search(todoData, term), filter)
         const doneCount = todoData
         .filter((el) => el.done )
         .length;
@@ -125,7 +142,9 @@ export default class App extends Component {
                 <AppHeader toDo={ todoCount } done={ doneCount } />
                 <div className="app-actions-panel">
                     <SearchPanel onSearchChange={ this.onSearchChange } />   
-                    <StatusFilter />
+                    <StatusFilter 
+                    filter={ filter } 
+                    onFilterChange={ this.onFilterChange } />
                 </div>
                 <TodoList todos={ visibleData } 
                     onDeleted={ this.deletListItem }
